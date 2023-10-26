@@ -1,0 +1,95 @@
+ALGORITHM sum_of_distinct
+VAR
+    set_1 : ARRAY_OF INTEGER
+    set_2 : ARRAY_OF INTEGER
+    distinct_set : ARRAY_OF INTEGER
+    status = CHAR // can be 's' or 'n'
+    sum: INTEGER := 0
+BEGIN
+
+    // read  sets
+
+    set_1 = Read()
+    set_2 = Read()
+
+    // loop the each integer --loop 1
+
+    FOR a FROM 0 TO set_1.length STEP 1  DO
+
+        //set status to not same 'n'
+        status = 'n'
+
+        // loop each integer - loop2
+
+        FOR b FROM 0 TO set_2.length STEP 1  DO
+            
+            //compare the two current characters
+
+            IF (a == b) THEN
+                // if same, set status to found
+                status='f'
+                
+            
+            END_IF
+        
+        
+
+        END_FOR
+
+        // IF NOT FOUND ADD TO DISTINCT
+
+        IF status = 'n' THEN
+            distinct_set.add(b)
+
+    END_FOR
+        
+        
+
+
+    // do the reversal ------------------------------------------
+
+    // loop the each integer --loop 1
+
+    FOR a FROM 0 TO set_2.length STEP 1  DO
+
+        //set status to not same 'n'
+        status = 'n'
+
+        // loop each integer - loop2
+
+        FOR b FROM 0 TO set_1.length STEP 1  DO
+            
+            //compare the two current characters
+
+            IF (a == b) THEN
+                // if same, set status to found
+                status='f'
+                
+            
+            END_IF
+        
+
+        END_FOR
+
+        // IF NOT FOUND ADD TO DISTINCT
+
+        IF status = 'n' THEN
+            distinct_set.add(b)
+
+    END_FOR
+        
+        
+
+
+    //add all intergers in distinct_set to sum
+
+    FOR i FROM 0 TO distinct_set.length-1 STEP 1  DO
+        sum = sum+i
+    END_FOR
+
+    // output sum
+
+    Write(sum)
+
+    
+END

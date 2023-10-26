@@ -1,0 +1,101 @@
+
+PROCEDURE dot_product(v1,v2, VAR ps)
+VAR
+
+    product: ARRAY_OF INTEGER
+
+BEGIN
+
+    //make sure the vectors are of the same length
+
+    IF (v1.length == v2.length) THEN
+        None
+    ELSE
+        Write('Vectors are not the same size')
+        exit()
+    END_IF
+    
+
+    // loop  each integer in v1 --loop 1
+
+    FOR i FROM 0 TO v1.length-1 STEP 1  DO
+        
+        a = v1[i]*v2[i]
+
+        // save the product in a product
+        product = product.add(a)
+        
+        END_FOR
+        
+    END_FOR
+
+    //sum items in product
+    FOR i FROM 0 TO product.length-1 STEP 1  DO
+        ps :=ps + i
+    END_FOR
+        
+
+    
+END
+
+
+
+ALGORITHM algorithm_name
+VAR
+    ps : INTEGER
+    vectors : ARRAY_OF INTEGER;
+    input_vector : ARRAY_OF INTEGER;
+    n = INTEGER
+BEGIN
+    
+
+    // read arrays from user
+
+    REPEAT
+        input_vector = Read('input vector')
+        IF (input_vector  <> '') THEN //if is a not a space
+            //add to vectors
+            vectors.add(input_vector)
+        END_IF 
+    UNTIL (input_vector  == '') // if empty input, end
+
+        
+
+    // read number of arrays 
+    n = vectors.length
+
+
+    //calculate dot_product for all arrays
+    //loop through combinations of the arrays two at a time
+
+    WHILE (n > 0) DO
+
+        // pick each vector starting from the last 
+        v1 = vectors[n-1]
+
+        //pick each other vector starting from the first
+        FOR i FROM 0 TO n-1 STEP step  DO
+            //avoid the same vector
+            IF (i<>n-1) THEN
+                // calculate do_product for the 2 arrays
+                dot_product(v1,v2)
+
+                //check if it is orthogonal
+
+                IF (ps==0) THEN
+                    // it is orthogonal
+                    Write('orthogonal')
+                ELSE
+                    Write('Not orthogonal')
+                END_IF
+
+
+            END_IF
+            
+        END_FOR
+
+    END_WHILE
+
+    
+
+END
